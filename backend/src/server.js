@@ -3,21 +3,23 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/auth_route.js"; // importing auth routes
 import messageRoutes from "./routes/message_route.js"; // importing message routes
 import path from "path"; // to get the current directory path
+import {connectDB} from "./lib/db.js"; // importing connectDB function from db.js file
 
 dotenv.config();
+
+// Connect to the database first
+connectDB();
 
 const app = express();
 const __dirname = path.resolve(); // to get the current directory path
 
-app.use(express.json());
+app.use(express.json());// req.body
 
 const PORT = process.env.PORT || 3000;
-
 
 //it is for import api routes from auth_route.js folder
 app.use("/api/auth",authRoutes);
 app.use("/api/messages",messageRoutes);
-
 
 // this is for deployment
 if (process.env.NODE_ENV === "production") {
