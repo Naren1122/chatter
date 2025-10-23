@@ -1,5 +1,6 @@
 import express from "express"
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth_route.js"; // importing auth routes
 import messageRoutes from "./routes/message_route.js"; // importing message routes
 import path from "path"; // to get the current directory path
@@ -12,6 +13,7 @@ const app = express();
 const __dirname = path.resolve(); // to get the current directory path
 
 app.use(express.json());// req.body
+app.use(cookieParser()); // parse cookies
 
 // Serve static assets
 app.use("/assets", express.static(path.join(__dirname, "assets")));
