@@ -1,7 +1,8 @@
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 import {generateToken} from "../lib/utils.js";
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config();
 import {sendWelcomeEmail} from "../emails/emailHandlers.js";
 import {ENV} from "../lib/env.js";
 import cloudinary from "../lib/cloudinary.js";
