@@ -6,6 +6,7 @@ import messageRoutes from "./routes/message_route.js"; // importing message rout
 import path from "path"; // to get the current directory path
 import {connectDB} from "./lib/db.js"; // importing connectDB function from db.js file
 import {ENV} from "./lib/env.js";
+import cors from "cors"
 
 dotenv.config();
 
@@ -13,6 +14,9 @@ const app = express();
 const __dirname = path.resolve(); // to get the current directory path
 
 app.use(express.json());// req.body
+app.use(cors({origin:ENV.CLIENT_URL,credentials:true})); // to allow requests from the frontend
+app.use(express.urlencoded({extended:false})); // parse form data
+
 app.use(cookieParser()); // parse cookies
 
 // Serve static assets
